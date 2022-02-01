@@ -9,3 +9,14 @@ D:\cosas\paragit\practicaCs\calculadoraForms\calculadoraForms\obj\Debug\calculad
 D:\cosas\paragit\practicaCs\calculadoraForms\calculadoraForms\obj\Debug\calculadoraForms.csproj.CoreCompileInputs.cache
 D:\cosas\paragit\practicaCs\calculadoraForms\calculadoraForms\obj\Debug\calculadoraForms.exe
 D:\cosas\paragit\practicaCs\calculadoraForms\calculadoraForms\obj\Debug\calculadoraForms.pdb
+C:\cosas\prac\calculadoraForms\calculadoraForms\bin\Debug\calculadoraForms.exe.config
+C:\cosas\prac\calculadoraForms\calculadoraForms\bin\Debug\calculadoraForms.exe
+C:\cosas\prac\calculadoraForms\calculadoraForms\bin\Debug\calculadoraForms.pdb
+C:\cosas\prac\calculadoraForms\calculadoraForms\obj\Debug\calculadoraForms.csproj.AssemblyReference.cache
+C:\cosas\prac\calculadoraForms\calculadoraForms\obj\Debug\calculadoraForms.csproj.SuggestedBindingRedirects.cache
+C:\cosas\prac\calculadoraForms\calculadoraForms\obj\Debug\calculadoraForms.Form1.resources
+C:\cosas\prac\calculadoraForms\calculadoraForms\obj\Debug\calculadoraForms.Properties.Resources.resources
+C:\cosas\prac\calculadoraForms\calculadoraForms\obj\Debug\calculadoraForms.csproj.GenerateResource.cache
+C:\cosas\prac\calculadoraForms\calculadoraForms\obj\Debug\calculadoraForms.csproj.CoreCompileInputs.cache
+C:\cosas\prac\calculadoraForms\calculadoraForms\obj\Debug\calculadoraForms.exe
+C:\cosas\prac\calculadoraForms\calculadoraForms\obj\Debug\calculadoraForms.pdb

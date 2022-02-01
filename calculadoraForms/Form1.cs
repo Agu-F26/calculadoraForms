@@ -158,14 +158,19 @@ namespace calculadoraForms
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            bool isEnter = false;
-            if (e.KeyChar == Convert.ToChar(Keys.Enter)) isEnter = true;
-            if (isEnter)
+            if (Char.IsDigit(e.KeyChar) || e.KeyChar == '+' || e.KeyChar == '-' || e.KeyChar == '*' || e.KeyChar == '/' || e.KeyChar == Convert.ToChar(Keys.Enter) || e.KeyChar == Convert.ToChar(Keys.Back) || e.KeyChar == Convert.ToChar(Keys.Delete))
             {
-                //textBox1.Text = $"{isEnter}";
-                input = textBox1.Text;
-                textBox1.Text = $"{operacion(input)}";
+                if (e.KeyChar == Convert.ToChar(Keys.Enter))
+                {
+                    input = textBox1.Text;
+                    textBox1.Text = $"{operacion(input)}";
+                }
             }
+            else
+            {
+                e.Handled = true;
+            }
+            
         }
 
 
