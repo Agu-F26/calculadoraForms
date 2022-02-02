@@ -114,25 +114,7 @@ namespace calculadoraForms
         }
 
 
-        public double sin(string input)
-        {
-            int indexSinIn = -1;
-            int indexSinOut = -1;
-            string numStr = "";
-            double num = -1;
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 'S') indexSinIn = i + 4;
-                if (input[i] == ')') indexSinOut = i;
-            }
-
-            for (int i = indexSinIn; i < indexSinOut; i++) numStr += input[i];
-
-            num = Double.Parse(numStr);
-
-            return Math.Sin(num);           
-        }
+        
 
         public double operacion(string input)
         {
@@ -188,7 +170,25 @@ namespace calculadoraForms
 
             return result;
         }
+        public double sin(string input)
+        {
+            int indexSinIn = -1;
+            int indexSinOut = -1;
+            string numStr = "";
+            double num = -1;
 
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 'S') indexSinIn = i + 4;
+                if (input[i] == ')') indexSinOut = i;
+            }
+
+            for (int i = indexSinIn; i < indexSinOut; i++) numStr += input[i];
+
+            num = Double.Parse(numStr);
+
+            return Math.Sin(num);
+        }
 
         public string replaceSin(string input)
         {
@@ -220,6 +220,113 @@ namespace calculadoraForms
             }
             return isSin;
         }
+
+        //----------------------------------------------------------------------
+        public double cos(string input)
+        {
+            int indexCosIn = -1;
+            int indexCosOut = -1;
+            string numStr = "";
+            double num = -1;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 'C') indexCosIn = i + 4;
+                if (input[i] == ')') indexCosOut = i;
+            }
+
+            for (int i = indexCosIn; i < indexCosOut; i++) numStr += input[i];
+
+            num = Double.Parse(numStr);
+
+            return Math.Cos(num);
+        }
+
+        public string replaceCos(string input)
+        {
+            string aux = "";
+            int indexCosIn = -1;
+            int indexCosOut = -1;
+            double result;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 'C') indexCosIn = i;
+                if (input[i] == ')') indexCosOut = i + 1;
+            }
+            for (int i = indexCosIn; i < indexCosOut; i++) aux += input[i];
+
+            result = cos(aux);
+
+            aux = input.Replace(aux, result.ToString());
+
+            return aux;
+        }
+
+        public bool cosExists(string input)
+        {
+            bool isCos = false;
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 'C') isCos = true;
+            }
+            return isCos;
+        }
+        //----------------------------------------------------------------------
+
+        //----------------------------------------------------------------------
+
+        public double tan(string input)
+        {
+            int indexTanIn = -1;
+            int indexTanOut = -1;
+            string numStr = "";
+            double num = -1;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 'C') indexTanIn = i + 4;
+                if (input[i] == ')') indexTanOut = i;
+            }
+
+            for (int i = indexTanIn; i < indexTanOut; i++) numStr += input[i];
+
+            num = Double.Parse(numStr);
+
+            return Math.Tan(num);
+        }
+
+        public string replaceTan(string input)
+        {
+            string aux = "";
+            int indexTanIn = -1;
+            int indexTanOut = -1;
+            double result;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 'C') indexTanIn = i;
+                if (input[i] == ')') indexTanOut = i + 1;
+            }
+            for (int i = indexTanIn; i < indexTanOut; i++) aux += input[i];
+
+            result = tan(aux);
+
+            aux = input.Replace(aux, result.ToString());
+
+            return aux;
+        }
+
+        public bool tanExists(string input)
+        {
+            bool isTan = false;
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 'C') isTan = true;
+            }
+            return isTan;
+        }
+        //----------------------------------------------------------------------
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
