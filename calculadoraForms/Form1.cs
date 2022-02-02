@@ -115,7 +115,6 @@ namespace calculadoraForms
             int indexSinOut = -1;
             string numStr = "";
             double num = -1;
-            double result = -1;
 
             for (int i = 0; i < input.Length; i++)
             {
@@ -127,9 +126,7 @@ namespace calculadoraForms
 
             num = Double.Parse(numStr);
 
-            result = Math.Sin(num);
-
-            return result;            
+            return Math.Sin(num);           
         }
 
         public int operacion(string input)
@@ -141,6 +138,16 @@ namespace calculadoraForms
             string numBstr = "";
             char operacion = '\0';
             int result = 0;
+            string sin = "";
+
+            for(int i = 0; i < input.Length; i++)
+            {
+                if(input[i] == 'S')
+                {
+
+                }
+            }
+
 
             for(int i = 0; i < input.Length; i++) //Encontrar operacion e indice
             {
