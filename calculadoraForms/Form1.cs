@@ -119,7 +119,7 @@ namespace calculadoraForms
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'S') indexSinIn = i + 3;
+                if (input[i] == 'S') indexSinIn = i + 4;
                 if (input[i] == ')') indexSinOut = i;
             }
 
@@ -129,7 +129,7 @@ namespace calculadoraForms
 
             result = Math.Sin(num);
 
-            return num;            
+            return result;            
         }
 
         public int operacion(string input)
@@ -206,7 +206,8 @@ namespace calculadoraForms
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 input = textBox1.Text;
-                textBox1.Text = $"{operacion(input)}";
+                //textBox1.Text = $"{operacion(input)}";
+                textBox1.Text = $"{sin(input)}";
             }
 
         }
