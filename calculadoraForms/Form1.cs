@@ -98,9 +98,38 @@ namespace calculadoraForms
             textBox1.Text = "";
         }
 
+        private void btn_sin_Click(object sender, EventArgs e)
+        {
+            textBox1.Text += "Sin(";
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+
+        public double sin(string input)
+        {
+            int indexSinIn = -1;
+            int indexSinOut = -1;
+            string numStr = "";
+            double num = -1;
+            double result = -1;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 'S') indexSinIn = i + 3;
+                if (input[i] == ')') indexSinOut = i;
+            }
+
+            for (int i = indexSinIn; i < indexSinOut; i++) numStr += input[i];
+
+            num = Double.Parse(numStr);
+
+            result = Math.Sin(num);
+
+            return num;            
         }
 
         public int operacion(string input)
@@ -130,7 +159,7 @@ namespace calculadoraForms
             }
             catch
             {
-                return 666;
+                return Int32.Parse(input);
             }
 
 
@@ -182,6 +211,6 @@ namespace calculadoraForms
 
         }
 
-
+        
     }
 }
