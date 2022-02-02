@@ -158,7 +158,9 @@ namespace calculadoraForms
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (Char.IsDigit(e.KeyChar) || e.KeyChar == '+' || e.KeyChar == '-' || e.KeyChar == '*' || e.KeyChar == '/' || e.KeyChar == Convert.ToChar(Keys.Enter) || e.KeyChar == Convert.ToChar(Keys.Back) || e.KeyChar == Convert.ToChar(Keys.Delete))
+            /* Esto era para verificar, removido temporalmente.
+             * 
+             * if (Char.IsDigit(e.KeyChar) || e.KeyChar == '+' || e.KeyChar == '-' || e.KeyChar == '*' || e.KeyChar == '/' || e.KeyChar == Convert.ToChar(Keys.Enter) || e.KeyChar == Convert.ToChar(Keys.Back) || e.KeyChar == Convert.ToChar(Keys.Delete))
             {
                 if (e.KeyChar == Convert.ToChar(Keys.Enter))
                 {
@@ -170,8 +172,16 @@ namespace calculadoraForms
             {
                 e.Handled = true;
             }
-            
+            */
+
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                input = textBox1.Text;
+                textBox1.Text = $"{operacion(input)}";
+            }
+
         }
-        
+
+
     }
 }
