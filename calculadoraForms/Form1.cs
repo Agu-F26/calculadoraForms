@@ -17,6 +17,7 @@ namespace calculadoraForms
             InitializeComponent();
         }
         string input = "";
+        
         private void btn_div_Click(object sender, EventArgs e)
         {
             textBox1.Text += "/";
@@ -90,6 +91,10 @@ namespace calculadoraForms
         private void btn_ce_Click(object sender, EventArgs e)
         {
             input = textBox1.Text;
+            if (sinExists(input))
+            {
+                input = replaceSin(input);
+            }
             textBox1.Text = $"{operacion(input)}";
         }
 
@@ -129,29 +134,21 @@ namespace calculadoraForms
             return Math.Sin(num);           
         }
 
-        public int operacion(string input)
+        public double operacion(string input)
         {
-            int numA = 0;
-            int numB = 0;
+            double numA = 0;
+            double numB = 0;
             int indexOperando = -1;
             string numAstr = "";
             string numBstr = "";
             char operacion = '\0';
-            int result = 0;
-            string sin = "";
+            double result = 0;
 
-            for(int i = 0; i < input.Length; i++)
-            {
-                if(input[i] == 'S')
-                {
-
-                }
-            }
-
+          
 
             for(int i = 0; i < input.Length; i++) //Encontrar operacion e indice
             {
-                if (!Char.IsDigit(input[i]))
+                if (!Char.IsDigit(input[i]) && input[i] != ',' && input[i] != ' ')
                 {
                     operacion = input[i];
                     indexOperando = i;
@@ -161,12 +158,12 @@ namespace calculadoraForms
             {
                 for (int i = 0; i < indexOperando; i++) numAstr += input[i]; //genera primer numero (texto)
                 for (int i = indexOperando + 1; i < input.Length; i++) numBstr += input[i]; //genera segundo numero (texto)
-                numA = Int32.Parse(numAstr); //primer numero
-                numB = Int32.Parse(numBstr); //segundo numero
+                numA = Double.Parse(numAstr); //primer numero
+                numB = Double.Parse(numBstr); //segundo numero
             }
             catch
             {
-                return Int32.Parse(input);
+                return Double.Parse(input);
             }
 
 
@@ -192,6 +189,38 @@ namespace calculadoraForms
             return result;
         }
 
+
+        public string replaceSin(string input)
+        {
+            string aux = "";
+            int indexSinIn = -1;
+            int indexSinOut = -1;
+            double result;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 'S') indexSinIn = i;
+                if (input[i] == ')') indexSinOut = i + 1;
+            }
+            for (int i = indexSinIn; i < indexSinOut; i++) aux += input[i];
+
+            result = sin(aux);
+
+            aux = input.Replace(aux, result.ToString());
+
+            return aux;
+        }
+
+        public bool sinExists(string input)
+        {
+            bool isSin = false;
+            for(int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 'S') isSin = true;
+            }
+            return isSin;
+        }
+
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             /* Esto era para verificar, removido temporalmente.
@@ -213,8 +242,11 @@ namespace calculadoraForms
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 input = textBox1.Text;
-                //textBox1.Text = $"{operacion(input)}";
-                textBox1.Text = $"{sin(input)}";
+                if (sinExists(input))
+                {
+                    input = replaceSin(input);
+                }
+                textBox1.Text = $"{operacion(input)}";
             }
 
         }
