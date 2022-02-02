@@ -130,7 +130,7 @@ namespace calculadoraForms
 
             for(int i = 0; i < input.Length; i++) //Encontrar operacion e indice
             {
-                if (!Char.IsDigit(input[i]) && input[i] != ',' && input[i] != ' ')
+                if (!Char.IsDigit(input[i]) && input[i] != ',' && input[i] != ' ' && input[i] != '-');
                 {
                     operacion = input[i];
                     indexOperando = i;
@@ -282,11 +282,14 @@ namespace calculadoraForms
             int indexTanOut = -1;
             string numStr = "";
             double num = -1;
+            
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'C') indexTanIn = i + 4;
+                if (input[i] == 'T') indexTanIn = i + 4;
                 if (input[i] == ')') indexTanOut = i;
+
+
             }
 
             for (int i = indexTanIn; i < indexTanOut; i++) numStr += input[i];
@@ -305,7 +308,7 @@ namespace calculadoraForms
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'C') indexTanIn = i;
+                if (input[i] == 'T') indexTanIn = i;
                 if (input[i] == ')') indexTanOut = i + 1;
             }
             for (int i = indexTanIn; i < indexTanOut; i++) aux += input[i];
@@ -320,9 +323,13 @@ namespace calculadoraForms
         public bool tanExists(string input)
         {
             bool isTan = false;
+            char test = '\0';
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'C') isTan = true;
+                test = input[i];
+                if (input[i] == 'T') isTan = true;
+
+
             }
             return isTan;
         }
@@ -352,6 +359,14 @@ namespace calculadoraForms
                 if (sinExists(input))
                 {
                     input = replaceSin(input);
+                }
+                if (cosExists(input))
+                {
+                    input = replaceCos(input);
+                }
+                if (tanExists(input))
+                {
+                    input = replaceTan(input);
                 }
                 textBox1.Text = $"{operacion(input)}";
             }
