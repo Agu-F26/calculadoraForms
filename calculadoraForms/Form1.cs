@@ -108,6 +108,18 @@ namespace calculadoraForms
             textBox1.Text += "Sin(";
         }
 
+        private void btn_cos_Click(object sender, EventArgs e)
+        {
+            textBox1.Text += "Cos(";
+        }
+
+        private void btn_tan_Click(object sender, EventArgs e)
+        {
+            textBox1.Text += "Tan(";
+        }
+
+
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             
@@ -337,7 +349,7 @@ namespace calculadoraForms
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            /* Esto era para verificar, removido temporalmente.
+            /* Esto era para verificar, removido temporalmente (para siempre hasta que encuentre una manera mejor).
              * 
              * if (Char.IsDigit(e.KeyChar) || e.KeyChar == '+' || e.KeyChar == '-' || e.KeyChar == '*' || e.KeyChar == '/' || e.KeyChar == Convert.ToChar(Keys.Enter) || e.KeyChar == Convert.ToChar(Keys.Back) || e.KeyChar == Convert.ToChar(Keys.Delete))
             {
@@ -374,6 +386,6 @@ namespace calculadoraForms
 
         }
 
-        
+
     }
 }

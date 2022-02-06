@@ -47,6 +47,8 @@
             this.btn_suma = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btn_sin = new System.Windows.Forms.Button();
+            this.btn_cos = new System.Windows.Forms.Button();
+            this.btn_tan = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_1
@@ -240,11 +242,33 @@
             this.btn_sin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btn_sin.Location = new System.Drawing.Point(229, 247);
             this.btn_sin.Name = "btn_sin";
-            this.btn_sin.Size = new System.Drawing.Size(51, 46);
+            this.btn_sin.Size = new System.Drawing.Size(55, 46);
             this.btn_sin.TabIndex = 17;
             this.btn_sin.Text = "Sin()";
             this.btn_sin.UseVisualStyleBackColor = true;
             this.btn_sin.Click += new System.EventHandler(this.btn_sin_Click);
+            // 
+            // btn_cos
+            // 
+            this.btn_cos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btn_cos.Location = new System.Drawing.Point(229, 314);
+            this.btn_cos.Name = "btn_cos";
+            this.btn_cos.Size = new System.Drawing.Size(55, 46);
+            this.btn_cos.TabIndex = 18;
+            this.btn_cos.Text = "Cos()";
+            this.btn_cos.UseVisualStyleBackColor = true;
+            this.btn_cos.Click += new System.EventHandler(this.btn_cos_Click);
+            // 
+            // btn_tan
+            // 
+            this.btn_tan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btn_tan.Location = new System.Drawing.Point(229, 379);
+            this.btn_tan.Name = "btn_tan";
+            this.btn_tan.Size = new System.Drawing.Size(55, 46);
+            this.btn_tan.TabIndex = 19;
+            this.btn_tan.Text = "Tan()";
+            this.btn_tan.UseVisualStyleBackColor = true;
+            this.btn_tan.Click += new System.EventHandler(this.btn_tan_Click);
             // 
             // Form1
             // 
@@ -252,6 +276,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(339, 534);
+            this.Controls.Add(this.btn_tan);
+            this.Controls.Add(this.btn_cos);
             this.Controls.Add(this.btn_sin);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btn_div);
@@ -300,6 +326,8 @@
         private System.Windows.Forms.Button btn_suma;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btn_sin;
+        private System.Windows.Forms.Button btn_cos;
+        private System.Windows.Forms.Button btn_tan;
     }
 }
 
