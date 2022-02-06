@@ -93,30 +93,10 @@ namespace calculadoraForms
             input = textBox1.Text;
             input = input.ToLower();
 
+            while (sinExists(input)) input = replaceSin(input);
+            while (cosExists(input)) input = replaceCos(input);
+            while (tanExists(input)) input = replaceTan(input);
 
-            if (sinExists(input))
-            {
-                while (sinExists(input))
-                {
-                    input = replaceSin(input);
-                }
-            }
-
-            if (cosExists(input))
-            {
-                while (cosExists(input))
-                {
-                    input = replaceCos(input);
-                }
-            }
-
-            if (tanExists(input))
-            {
-                while (tanExists(input))
-                {
-                    input = replaceTan(input);
-                }
-            }
             textBox1.Text = $"{operacion(input)}";
         }
 
@@ -413,36 +393,14 @@ namespace calculadoraForms
                 input = textBox1.Text;
                 input = input.ToLower();
 
-                
-                if (sinExists(input))
-                {
-                    while (sinExists(input))
-                    {
-                        input = replaceSin(input);
-                    }
-                }
-                                     
-                if (cosExists(input))
-                {
-                    while (cosExists(input))
-                    {
-                        input = replaceCos(input);
-                    }
-                }
+                while (sinExists(input)) input = replaceSin(input);
+                while (cosExists(input)) input = replaceCos(input);
+                while (tanExists(input)) input = replaceTan(input);
 
-                if (tanExists(input))
-                {
-                    while (tanExists(input))
-                    {
-                        input = replaceTan(input);
-                    }
-                }
-                
                 textBox1.Text = $"{operacion(input)}";
             }
 
         }
-
 
     }
 }
