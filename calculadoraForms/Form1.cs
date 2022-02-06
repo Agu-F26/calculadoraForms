@@ -130,7 +130,7 @@ namespace calculadoraForms
 
             for(int i = 0; i < input.Length; i++) //Encontrar operacion e indice
             {
-                if (!Char.IsDigit(input[i]) && input[i] != ',' && input[i] != ' ' && input[i] != '-');
+                if (!Char.IsDigit(input[i]) && input[i] != ',' && input[i] != ' ' && input[i] != '-')
                 {
                     operacion = input[i];
                     indexOperando = i;
@@ -179,7 +179,7 @@ namespace calculadoraForms
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'S') indexSinIn = i + 4;
+                if (input[i] == 's') indexSinIn = i + 4;
                 if (input[i] == ')') indexSinOut = i;
             }
 
@@ -199,7 +199,7 @@ namespace calculadoraForms
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'S') indexSinIn = i;
+                if (input[i] == 's') indexSinIn = i;
                 if (input[i] == ')') indexSinOut = i + 1;
             }
             for (int i = indexSinIn; i < indexSinOut; i++) aux += input[i];
@@ -216,7 +216,7 @@ namespace calculadoraForms
             bool isSin = false;
             for(int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'S') isSin = true;
+                if (input[i] == 's') isSin = true;
             }
             return isSin;
         }
@@ -231,7 +231,7 @@ namespace calculadoraForms
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'C') indexCosIn = i + 4;
+                if (input[i] == 'c') indexCosIn = i + 4;
                 if (input[i] == ')') indexCosOut = i;
             }
 
@@ -251,7 +251,7 @@ namespace calculadoraForms
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'C') indexCosIn = i;
+                if (input[i] == 'c') indexCosIn = i;
                 if (input[i] == ')') indexCosOut = i + 1;
             }
             for (int i = indexCosIn; i < indexCosOut; i++) aux += input[i];
@@ -268,7 +268,7 @@ namespace calculadoraForms
             bool isCos = false;
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'C') isCos = true;
+                if (input[i] == 'c') isCos = true;
             }
             return isCos;
         }
@@ -286,7 +286,7 @@ namespace calculadoraForms
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'T') indexTanIn = i + 4;
+                if (input[i] == 't') indexTanIn = i + 4;
                 if (input[i] == ')') indexTanOut = i;
 
 
@@ -308,7 +308,7 @@ namespace calculadoraForms
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'T') indexTanIn = i;
+                if (input[i] == 't') indexTanIn = i;
                 if (input[i] == ')') indexTanOut = i + 1;
             }
             for (int i = indexTanIn; i < indexTanOut; i++) aux += input[i];
@@ -327,7 +327,7 @@ namespace calculadoraForms
             for (int i = 0; i < input.Length; i++)
             {
                 test = input[i];
-                if (input[i] == 'T') isTan = true;
+                if (input[i] == 't') isTan = true;
 
 
             }
@@ -356,6 +356,7 @@ namespace calculadoraForms
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 input = textBox1.Text;
+                input = input.ToLower();
                 if (sinExists(input))
                 {
                     input = replaceSin(input);
