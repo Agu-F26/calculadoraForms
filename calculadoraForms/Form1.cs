@@ -91,9 +91,31 @@ namespace calculadoraForms
         private void btn_ce_Click(object sender, EventArgs e)
         {
             input = textBox1.Text;
+            input = input.ToLower();
+
+
             if (sinExists(input))
             {
-                input = replaceSin(input);
+                while (sinExists(input))
+                {
+                    input = replaceSin(input);
+                }
+            }
+
+            if (cosExists(input))
+            {
+                while (cosExists(input))
+                {
+                    input = replaceCos(input);
+                }
+            }
+
+            if (tanExists(input))
+            {
+                while (tanExists(input))
+                {
+                    input = replaceTan(input);
+                }
             }
             textBox1.Text = $"{operacion(input)}";
         }
@@ -142,10 +164,11 @@ namespace calculadoraForms
 
             for(int i = 0; i < input.Length; i++) //Encontrar operacion e indice
             {
-                if (!Char.IsDigit(input[i]) && input[i] != ',' && input[i] != ' ' && input[i] != '-')
+                if (!Char.IsDigit(input[i]) && input[i] != ',' && input[i] != ' ' && i != 0)
                 {
                     operacion = input[i];
                     indexOperando = i;
+                    break;
                 }
             }
             try
@@ -212,7 +235,11 @@ namespace calculadoraForms
             for (int i = 0; i < input.Length; i++)
             {
                 if (input[i] == 's') indexSinIn = i;
-                if (input[i] == ')') indexSinOut = i + 1;
+                if (input[i] == ')') 
+                {
+                    indexSinOut = i + 1;
+                    break;
+                } 
             }
             for (int i = indexSinIn; i < indexSinOut; i++) aux += input[i];
 
@@ -226,9 +253,14 @@ namespace calculadoraForms
         public bool sinExists(string input)
         {
             bool isSin = false;
-            for(int i = 0; i < input.Length; i++)
+            
+            for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 's') isSin = true;
+                if (input[i] == 's' && input[i + 1] == 'i')
+                {
+                    isSin = true;
+                    break;
+                }
             }
             return isSin;
         }
@@ -244,7 +276,11 @@ namespace calculadoraForms
             for (int i = 0; i < input.Length; i++)
             {
                 if (input[i] == 'c') indexCosIn = i + 4;
-                if (input[i] == ')') indexCosOut = i;
+                if (input[i] == ')')
+                {
+                    indexCosOut = i;
+                    break;
+                }
             }
 
             for (int i = indexCosIn; i < indexCosOut; i++) numStr += input[i];
@@ -299,9 +335,11 @@ namespace calculadoraForms
             for (int i = 0; i < input.Length; i++)
             {
                 if (input[i] == 't') indexTanIn = i + 4;
-                if (input[i] == ')') indexTanOut = i;
-
-
+                if (input[i] == ')')
+                {
+                    indexTanOut = i;
+                    break;
+                }
             }
 
             for (int i = indexTanIn; i < indexTanOut; i++) numStr += input[i];
@@ -321,7 +359,11 @@ namespace calculadoraForms
             for (int i = 0; i < input.Length; i++)
             {
                 if (input[i] == 't') indexTanIn = i;
-                if (input[i] == ')') indexTanOut = i + 1;
+                if (input[i] == ')')
+                {
+                    indexTanOut = i + 1;
+                    break;
+                }
             }
             for (int i = indexTanIn; i < indexTanOut; i++) aux += input[i];
 
@@ -335,13 +377,14 @@ namespace calculadoraForms
         public bool tanExists(string input)
         {
             bool isTan = false;
-            char test = '\0';
+            
             for (int i = 0; i < input.Length; i++)
             {
-                test = input[i];
-                if (input[i] == 't') isTan = true;
-
-
+                if (input[i] == 't')
+                {
+                    isTan = true;
+                    break;
+                }
             }
             return isTan;
         }
@@ -369,18 +412,32 @@ namespace calculadoraForms
             {
                 input = textBox1.Text;
                 input = input.ToLower();
+
+                
                 if (sinExists(input))
                 {
-                    input = replaceSin(input);
+                    while (sinExists(input))
+                    {
+                        input = replaceSin(input);
+                    }
                 }
+                                     
                 if (cosExists(input))
                 {
-                    input = replaceCos(input);
+                    while (cosExists(input))
+                    {
+                        input = replaceCos(input);
+                    }
                 }
+
                 if (tanExists(input))
                 {
-                    input = replaceTan(input);
+                    while (tanExists(input))
+                    {
+                        input = replaceTan(input);
+                    }
                 }
+                
                 textBox1.Text = $"{operacion(input)}";
             }
 
