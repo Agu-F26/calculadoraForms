@@ -185,6 +185,59 @@ namespace calculadoraForms
 
             return result;
         }
+
+        //-------------------------------REFACTOR--------------------------------------------
+
+        public double op(string input)
+        {
+            int indexOpIn = -1;
+            int indexOpOut = -1;
+            string numStr = "";
+            double num = -1;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 's') indexOpIn = i + 4;
+                if (input[i] == ')') indexOpOut = i;
+            }
+
+            for (int i = indexOpIn; i < indexOpOut; i++) numStr += input[i];
+
+            num = Double.Parse(numStr);
+
+            return Math.Sin(num);
+        }
+
+        public string replaceOp(string input)
+        {
+            string aux = "";
+            int indexOpIn = -1;
+            int indexOpOut = -1;
+            double result;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 's') indexOpIn = i;
+                if (input[i] == ')')
+                {
+                    indexOpOut = i + 1;
+                    break;
+                }
+            }
+            for (int i = indexOpIn; i < indexOpOut; i++) aux += input[i];
+
+            result = sin(aux);
+
+            aux = input.Replace(aux, result.ToString());
+
+            return aux;
+        }
+
+
+
+        //-------------------------------/REFACTOR-------------------------------------------
+
+
         public double sin(string input)
         {
             int indexSinIn = -1;
