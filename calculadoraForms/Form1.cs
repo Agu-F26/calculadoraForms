@@ -190,9 +190,12 @@ namespace calculadoraForms
         public string replaceOp(string input, char op)
         {
             string aux = "";
+            string aux1 = "";
             int indexOpIn = -1;
             int indexOpOut = -1;
-            double result;
+            int indexNumIn = -1;
+            int indexNumOut = -1;
+            double result = -1;
             string numStr ="";
             double num;
 
@@ -200,10 +203,10 @@ namespace calculadoraForms
                 case 's':
                     for (int i = 0; i < input.Length; i++)
                     {
-                        if (input[i] == 's' && input[i+1] == 'i') indexOpIn = i;
+                        if (input[i] == 's' && input[i+1] == 'i') indexOpIn = i + 4;
                         if (input[i] == ')')
                         {
-                            indexOpOut = i + 1;
+                            indexOpOut = i;
                             break;
                         }
                     }
@@ -213,10 +216,10 @@ namespace calculadoraForms
                 case 'c':
                     for (int i = 0; i < input.Length; i++)
                     {
-                        if (input[i] == 'c') indexOpIn = i;
+                        if (input[i] == 'c') indexOpIn = i + 4;
                         if (input[i] == ')')
                         {
-                            indexOpOut = i + 1;
+                            indexOpOut = i;
                             break;
                         }
                     }
@@ -226,10 +229,10 @@ namespace calculadoraForms
                 case 't':
                     for (int i = 0; i < input.Length; i++)
                     {
-                        if (input[i] == 't') indexOpIn = i;
+                        if (input[i] == 't') indexOpIn = i + 4;
                         if (input[i] == ')')
                         {
-                            indexOpOut = i + 1;
+                            indexOpOut = i;
                             break;
                         }
                     }
@@ -243,18 +246,19 @@ namespace calculadoraForms
             
             switch (op){
                 case 's': 
-                    result = Math.Sin(num);;
+                    result = Math.Sin(num);
+                    aux = $"sin({num})";
                     break;
                 case 'c': 
-                    result = Math.Cos(num);;
+                    result = Math.Cos(num);
+                    aux = $"cos({num})";
                     break;
                 case 't': 
-                    result = Math.Tan(num);;
+                    result = Math.Tan(num);
+                    aux = $"tan({num})";
                     break;
             }
 
-            for (int i = indexOpIn; i < indexOpOut; i++) aux += input[i];
-            result = sin(aux);
             aux = input.Replace(aux, result.ToString());
             return aux;
         }
@@ -480,10 +484,13 @@ namespace calculadoraForms
             {
                 input = textBox1.Text;
                 input = input.ToLower();
-
+                /*
                 while (sinExists(input)) input = replaceSin(input);
                 while (cosExists(input)) input = replaceCos(input);
                 while (tanExists(input)) input = replaceTan(input);
+                */
+
+                while (opExists(input) != '0') input = replaceOp(input, opExists(input));
 
                 textBox1.Text = $"{operacion(input)}";
             }
