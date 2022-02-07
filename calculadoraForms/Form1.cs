@@ -187,53 +187,88 @@ namespace calculadoraForms
         }
 
         //-------------------------------REFACTOR--------------------------------------------
-
-        public double op(string input)
-        {
-            int indexOpIn = -1;
-            int indexOpOut = -1;
-            string numStr = "";
-            double num = -1;
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 's') indexOpIn = i + 4;
-                if (input[i] == ')') indexOpOut = i;
-            }
-
-            for (int i = indexOpIn; i < indexOpOut; i++) numStr += input[i];
-
-            num = Double.Parse(numStr);
-
-            return Math.Sin(num);
-        }
-
-        public string replaceOp(string input)
+        public string replaceOp(string input, char op)
         {
             string aux = "";
             int indexOpIn = -1;
             int indexOpOut = -1;
             double result;
+            string numStr ="";
+            double num;
 
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 's') indexOpIn = i;
-                if (input[i] == ')')
-                {
-                    indexOpOut = i + 1;
+            switch (op){
+                case 's':
+                    for (int i = 0; i < input.Length; i++)
+                    {
+                        if (input[i] == 's' && input[i+1] == 'i') indexOpIn = i;
+                        if (input[i] == ')')
+                        {
+                            indexOpOut = i + 1;
+                            break;
+                        }
+                    }
                     break;
-                }
+                
+
+                case 'c':
+                    for (int i = 0; i < input.Length; i++)
+                    {
+                        if (input[i] == 'c') indexOpIn = i;
+                        if (input[i] == ')')
+                        {
+                            indexOpOut = i + 1;
+                            break;
+                        }
+                    }
+                    break;
+                
+
+                case 't':
+                    for (int i = 0; i < input.Length; i++)
+                    {
+                        if (input[i] == 't') indexOpIn = i;
+                        if (input[i] == ')')
+                        {
+                            indexOpOut = i + 1;
+                            break;
+                        }
+                    }
+                    break;
+                
             }
+
+            for (int i = indexOpIn; i < indexOpOut; i++) numStr += input[i];
+            num = Double.Parse(numStr);
+
+            
+            switch (op){
+                case 's': 
+                    result = Math.Sin(num);;
+                    break;
+                case 'c': 
+                    result = Math.Cos(num);;
+                    break;
+                case 't': 
+                    result = Math.Tan(num);;
+                    break;
+            }
+
             for (int i = indexOpIn; i < indexOpOut; i++) aux += input[i];
-
             result = sin(aux);
-
             aux = input.Replace(aux, result.ToString());
-
             return aux;
         }
 
-
+        public char opExists(string input)
+        {
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 's' && input[i + 1] == 'i') return 's';
+                if (input[i] == 'c') return 'c';
+                if (input[i] == 't') return 't';
+            }
+            return '0';
+        }
 
         //-------------------------------/REFACTOR-------------------------------------------
 
