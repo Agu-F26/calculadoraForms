@@ -92,11 +92,7 @@ namespace calculadoraForms
         {
             input = textBox1.Text;
             input = input.ToLower();
-
-            while (sinExists(input)) input = replaceSin(input);
-            while (cosExists(input)) input = replaceCos(input);
-            while (tanExists(input)) input = replaceTan(input);
-
+            while (opExists(input) != '0') input = replaceOp(input, opExists(input));
             textBox1.Text = $"{operacion(input)}";
         }
 
@@ -120,15 +116,10 @@ namespace calculadoraForms
             textBox1.Text += "Tan(";
         }
 
-
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             
         }
-
-
-        
 
         public double operacion(string input)
         {
@@ -139,9 +130,7 @@ namespace calculadoraForms
             string numBstr = "";
             char operacion = '\0';
             double result = 0;
-
           
-
             for(int i = 0; i < input.Length; i++) //Encontrar operacion e indice
             {
                 if (!Char.IsDigit(input[i]) && input[i] != ',' && input[i] != ' ' && i != 0)
@@ -162,8 +151,6 @@ namespace calculadoraForms
             {
                 return Double.Parse(input);
             }
-
-
             switch (operacion)
             {
                 case '+':
@@ -186,15 +173,11 @@ namespace calculadoraForms
             return result;
         }
 
-        //-------------------------------REFACTOR--------------------------------------------
         public string replaceOp(string input, char op)
         {
             string aux = "";
-            string aux1 = "";
             int indexOpIn = -1;
             int indexOpOut = -1;
-            int indexNumIn = -1;
-            int indexNumOut = -1;
             double result = -1;
             string numStr ="";
             double num;
@@ -211,7 +194,6 @@ namespace calculadoraForms
                         }
                     }
                     break;
-                
 
                 case 'c':
                     for (int i = 0; i < input.Length; i++)
@@ -225,7 +207,6 @@ namespace calculadoraForms
                     }
                     break;
                 
-
                 case 't':
                     for (int i = 0; i < input.Length; i++)
                     {
@@ -237,13 +218,11 @@ namespace calculadoraForms
                         }
                     }
                     break;
-                
             }
 
             for (int i = indexOpIn; i < indexOpOut; i++) numStr += input[i];
             num = Double.Parse(numStr);
 
-            
             switch (op){
                 case 's': 
                     result = Math.Sin(num);
@@ -274,228 +253,15 @@ namespace calculadoraForms
             return '0';
         }
 
-        //-------------------------------/REFACTOR-------------------------------------------
-
-
-        public double sin(string input)
-        {
-            int indexSinIn = -1;
-            int indexSinOut = -1;
-            string numStr = "";
-            double num = -1;
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 's') indexSinIn = i + 4;
-                if (input[i] == ')') indexSinOut = i;
-            }
-
-            for (int i = indexSinIn; i < indexSinOut; i++) numStr += input[i];
-
-            num = Double.Parse(numStr);
-
-            return Math.Sin(num);
-        }
-
-        public string replaceSin(string input)
-        {
-            string aux = "";
-            int indexSinIn = -1;
-            int indexSinOut = -1;
-            double result;
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 's') indexSinIn = i;
-                if (input[i] == ')') 
-                {
-                    indexSinOut = i + 1;
-                    break;
-                } 
-            }
-            for (int i = indexSinIn; i < indexSinOut; i++) aux += input[i];
-
-            result = sin(aux);
-
-            aux = input.Replace(aux, result.ToString());
-
-            return aux;
-        }
-
-        public bool sinExists(string input)
-        {
-            bool isSin = false;
-            
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 's' && input[i + 1] == 'i')
-                {
-                    isSin = true;
-                    break;
-                }
-            }
-            return isSin;
-        }
-
-        //----------------------------------------------------------------------
-        public double cos(string input)
-        {
-            int indexCosIn = -1;
-            int indexCosOut = -1;
-            string numStr = "";
-            double num = -1;
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 'c') indexCosIn = i + 4;
-                if (input[i] == ')')
-                {
-                    indexCosOut = i;
-                    break;
-                }
-            }
-
-            for (int i = indexCosIn; i < indexCosOut; i++) numStr += input[i];
-
-            num = Double.Parse(numStr);
-
-            return Math.Cos(num);
-        }
-
-        public string replaceCos(string input)
-        {
-            string aux = "";
-            int indexCosIn = -1;
-            int indexCosOut = -1;
-            double result;
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 'c') indexCosIn = i;
-                if (input[i] == ')') indexCosOut = i + 1;
-            }
-            for (int i = indexCosIn; i < indexCosOut; i++) aux += input[i];
-
-            result = cos(aux);
-
-            aux = input.Replace(aux, result.ToString());
-
-            return aux;
-        }
-
-        public bool cosExists(string input)
-        {
-            bool isCos = false;
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 'c') isCos = true;
-            }
-            return isCos;
-        }
-        //----------------------------------------------------------------------
-
-        //----------------------------------------------------------------------
-
-        public double tan(string input)
-        {
-            int indexTanIn = -1;
-            int indexTanOut = -1;
-            string numStr = "";
-            double num = -1;
-            
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 't') indexTanIn = i + 4;
-                if (input[i] == ')')
-                {
-                    indexTanOut = i;
-                    break;
-                }
-            }
-
-            for (int i = indexTanIn; i < indexTanOut; i++) numStr += input[i];
-
-            num = Double.Parse(numStr);
-
-            return Math.Tan(num);
-        }
-
-        public string replaceTan(string input)
-        {
-            string aux = "";
-            int indexTanIn = -1;
-            int indexTanOut = -1;
-            double result;
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 't') indexTanIn = i;
-                if (input[i] == ')')
-                {
-                    indexTanOut = i + 1;
-                    break;
-                }
-            }
-            for (int i = indexTanIn; i < indexTanOut; i++) aux += input[i];
-
-            result = tan(aux);
-
-            aux = input.Replace(aux, result.ToString());
-
-            return aux;
-        }
-
-        public bool tanExists(string input)
-        {
-            bool isTan = false;
-            
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 't')
-                {
-                    isTan = true;
-                    break;
-                }
-            }
-            return isTan;
-        }
-        //----------------------------------------------------------------------
-
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            /* Esto era para verificar, removido temporalmente (para siempre hasta que encuentre una manera mejor).
-             * 
-             * if (Char.IsDigit(e.KeyChar) || e.KeyChar == '+' || e.KeyChar == '-' || e.KeyChar == '*' || e.KeyChar == '/' || e.KeyChar == Convert.ToChar(Keys.Enter) || e.KeyChar == Convert.ToChar(Keys.Back) || e.KeyChar == Convert.ToChar(Keys.Delete))
-            {
-                if (e.KeyChar == Convert.ToChar(Keys.Enter))
-                {
-                    input = textBox1.Text;
-                    textBox1.Text = $"{operacion(input)}";
-                }
-            }
-            else
-            {
-                e.Handled = true;
-            }
-            */
-
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 input = textBox1.Text;
                 input = input.ToLower();
-                /*
-                while (sinExists(input)) input = replaceSin(input);
-                while (cosExists(input)) input = replaceCos(input);
-                while (tanExists(input)) input = replaceTan(input);
-                */
-
                 while (opExists(input) != '0') input = replaceOp(input, opExists(input));
-
                 textBox1.Text = $"{operacion(input)}";
             }
-
         }
-
     }
 }
