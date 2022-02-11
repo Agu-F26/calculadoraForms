@@ -116,6 +116,11 @@ namespace calculadoraForms
             textBox1.Text += "Tan(";
         }
 
+        private void btn_factorial_Click(object sender, EventArgs e)
+        {
+            textBox1.Text += "!";
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             
@@ -173,21 +178,17 @@ namespace calculadoraForms
             return result;
         }
 
-        public string factorial(string input)
+        public double factorial(double input)
         {
-            string result;
-            double num = double.Parse(input);
-            double aux = num;
+            double aux = input;
 
-            for (int i = (int)num; i > 0; i--)
+            for (int i = (int)input; i > 0; i--)
             {
-                aux = aux + (i * (i-1));
-            } 
-            
-            result = aux.ToString();
-
-            return result;
+                aux += i * (i-1);
+            }            
+            return aux;
         }
+
 
 
         public string replaceOp(string input, char op)
@@ -200,6 +201,28 @@ namespace calculadoraForms
             double num;
 
             switch (op){
+                case '!':
+                    for (int i = 0; i < input.Length; i++)
+                    {
+                        if (input[i] == '!')
+                        {
+                            indexOpOut = i;
+                            break;
+                        }
+                        
+                        
+                    }
+                    for (int i = indexOpOut; i > -1; i--)
+                    {
+                        if (!Char.IsDigit(input[i]) && input[i] != '!')
+                        {
+                            indexOpIn = i;
+                            break;
+                        }
+                        if (i == 0) indexOpIn = i;
+                    }
+                    break;
+
                 case 's':
                     for (int i = 0; i < input.Length; i++)
                     {
@@ -241,6 +264,11 @@ namespace calculadoraForms
             num = Double.Parse(numStr);
 
             switch (op){
+
+                case '!':
+                    result = factorial(num);
+                    aux = $"{num}!";
+                    break;
                 case 's': 
                     result = Math.Sin(num);
                     aux = $"sin({num})";
@@ -263,6 +291,7 @@ namespace calculadoraForms
         {
             for (int i = 0; i < input.Length; i++)
             {
+                if (input[i] == '!') return '!';
                 if (input[i] == 's' && input[i + 1] == 'i') return 's';
                 if (input[i] == 'c') return 'c';
                 if (input[i] == 't') return 't';
@@ -276,10 +305,11 @@ namespace calculadoraForms
             {
                 input = textBox1.Text;
                 input = input.ToLower();
-                //while (opExists(input) != '0') input = replaceOp(input, opExists(input));
-                //textBox1.Text = $"{operacion(input)}";
-                textBox1.Text = $"{factorial(input)}";
+                while (opExists(input) != '0') input = replaceOp(input, opExists(input));
+                textBox1.Text = $"{operacion(input)}";
             }
         }
+
+
     }
 }
