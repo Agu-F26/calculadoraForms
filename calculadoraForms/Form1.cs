@@ -177,9 +177,13 @@ namespace calculadoraForms
         {
             string result;
             double num = double.Parse(input);
-            double aux = 0;
+            double aux = num;
 
-            for (int i = 1; i < (int)num; i++) aux = aux + (i * aux);
+            for (int i = (int)num; i > 0; i--)
+            {
+                aux = aux + (i * (i-1));
+            } 
+            
             result = aux.ToString();
 
             return result;
@@ -272,8 +276,9 @@ namespace calculadoraForms
             {
                 input = textBox1.Text;
                 input = input.ToLower();
-                while (opExists(input) != '0') input = replaceOp(input, opExists(input));
-                textBox1.Text = $"{operacion(input)}";
+                //while (opExists(input) != '0') input = replaceOp(input, opExists(input));
+                //textBox1.Text = $"{operacion(input)}";
+                textBox1.Text = $"{factorial(input)}";
             }
         }
     }
