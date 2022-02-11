@@ -173,6 +173,19 @@ namespace calculadoraForms
             return result;
         }
 
+        public string factorial(string input)
+        {
+            string result;
+            double num = double.Parse(input);
+            double aux = 0;
+
+            for (int i = 1; i < (int)num; i++) aux = aux + (i * aux);
+            result = aux.ToString();
+
+            return result;
+        }
+
+
         public string replaceOp(string input, char op)
         {
             string aux = "";
