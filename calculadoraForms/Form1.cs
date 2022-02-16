@@ -201,7 +201,7 @@ namespace calculadoraForms
             string numStr ="";
             double num;
             string numStr1 = "";
-            double num1;
+            double num1=0;
             bool isSimple = false;
 
             switch (op){
@@ -286,16 +286,25 @@ namespace calculadoraForms
                             }
                         }
                     }
-                    break;
+                    for (int i = indexOpOut; i < input.Length; i++) aux += input[i];
+                break;
 
             }
 
-            for (int i = indexOpIn; i < indexOpOut; i++) numStr += input[i];
-            num = Double.Parse(numStr);
+            
             if (isSimple)
             {
-
+                for (int i = 0; i < indexOperando; i++) numStr += input[i];
+                num = Double.Parse(numStr);
+                for (int i = indexOperando + 1; i < indexOpOut; i++) numStr1 += input[i];
+                num1 = Double.Parse(numStr1);
             }
+            else
+            {
+                for (int i = indexOpIn; i < indexOpOut; i++) numStr += input[i];
+                num = Double.Parse(numStr);
+            }
+
 
             switch (op){
 
@@ -315,8 +324,24 @@ namespace calculadoraForms
                     result = Math.Tan(num);
                     aux = $"tan({num})";
                     break;
-            }
 
+                case '+':
+                    result = num + num1;
+                    break;
+                
+                case '-':
+                    result = num - num1;
+                    break;
+
+                case '/':
+                    result = num / num1;
+                    break;
+
+                case '*':
+                    result = num * num1;
+                    break;
+            }
+                                        //tengo que replantearme esta parte
             aux = input.Replace(aux, result.ToString());
             return aux;
         }
