@@ -295,6 +295,11 @@ namespace calculadoraForms
                 if (input[i] == 's' && input[i + 1] == 'i') return 's';
                 if (input[i] == 'c') return 'c';
                 if (input[i] == 't') return 't';
+                if (input[i] == '+') return '+';
+                if (input[i] == '-') return '-';
+                if (input[i] == '/') return '/';
+                if (input[i] == '*') return '*';
+
             }
             return '0';
         }
