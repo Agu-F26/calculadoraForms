@@ -196,9 +196,13 @@ namespace calculadoraForms
             string aux = "";
             int indexOpIn = -1;
             int indexOpOut = -1;
+            int indexOperando = -1;
             double result = -1;
             string numStr ="";
             double num;
+            string numStr1 = "";
+            double num1;
+            bool isSimple = false;
 
             switch (op){
                 case '!':
@@ -258,10 +262,40 @@ namespace calculadoraForms
                         }
                     }
                     break;
+
+                    //SEGUIR TRABAJANDO EN ESTO
+                case '+':
+                case '-':
+                case '/':
+                case '*':
+                    isSimple = true;
+                    for (int i = 0; i < input.Length; i++)
+                    {
+                        if((input[i] == '+') || (input[i] == '-') || (input[i] == '/') || (input[i] == '*'))
+                        {
+                            indexOperando = i;
+                            indexOpIn = i - 1;
+                            for(int j = i; j < input.Length; j++)
+                            {
+                                if (!Char.IsDigit(input[j]) && input[j] != ',')
+                                {
+                                    indexOpOut = j;
+                                    break;
+                                }
+                                indexOpOut = j;
+                            }
+                        }
+                    }
+                    break;
+
             }
 
             for (int i = indexOpIn; i < indexOpOut; i++) numStr += input[i];
             num = Double.Parse(numStr);
+            if (isSimple)
+            {
+
+            }
 
             switch (op){
 
@@ -296,7 +330,7 @@ namespace calculadoraForms
                 if (input[i] == 'c') return 'c';
                 if (input[i] == 't') return 't';
                 if (input[i] == '+') return '+';
-                if (input[i] == '-') return '-';
+                if ((input[i] == '-') && i > 0) return '-';
                 if (input[i] == '/') return '/';
                 if (input[i] == '*') return '*';
 
