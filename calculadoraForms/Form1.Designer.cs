@@ -49,6 +49,7 @@
             this.btn_sin = new System.Windows.Forms.Button();
             this.btn_cos = new System.Windows.Forms.Button();
             this.btn_tan = new System.Windows.Forms.Button();
+            this.btn_factorial = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_1
@@ -270,12 +271,24 @@
             this.btn_tan.UseVisualStyleBackColor = true;
             this.btn_tan.Click += new System.EventHandler(this.btn_tan_Click);
             // 
+            // btn_factorial
+            // 
+            this.btn_factorial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btn_factorial.Location = new System.Drawing.Point(229, 445);
+            this.btn_factorial.Name = "btn_factorial";
+            this.btn_factorial.Size = new System.Drawing.Size(55, 46);
+            this.btn_factorial.TabIndex = 20;
+            this.btn_factorial.Text = "!";
+            this.btn_factorial.UseVisualStyleBackColor = true;
+            this.btn_factorial.Click += new System.EventHandler(this.btn_factorial_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(339, 534);
+            this.Controls.Add(this.btn_factorial);
             this.Controls.Add(this.btn_tan);
             this.Controls.Add(this.btn_cos);
             this.Controls.Add(this.btn_sin);
@@ -328,6 +341,7 @@
         private System.Windows.Forms.Button btn_sin;
         private System.Windows.Forms.Button btn_cos;
         private System.Windows.Forms.Button btn_tan;
+        private System.Windows.Forms.Button btn_factorial;
     }
 }
 
